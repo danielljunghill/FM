@@ -1,33 +1,30 @@
-import { MultiplyTable } from './Task.js'
-import { DependableItem } from './DependableItem.js'
+import { Task } from './Task.js'
 
-export class TaskGroup extends DependableItem
+
+export class TaskGroup 
 {
-    constructor(tasks, dependentOn)
+    constructor(taskGroupId,tasks)
     {
-        this.tasks = tasks
-        this.dependentOn = dependentOn;
+        console.log(taskGroupId); 
+        this.Tasks = tasks;
+        this.TaskGroupId = taskGroupId;
+        
     }
     
-    completed(roundId)
+    completed()
     {
         //kontrollera om samtliga tasks (questions) är klara
-        if(this.tasks.map((x) => x.completed(roundId)).includes(false))
+        if(this.tasks.map((x) => x.completed()).includes(false))
         { 
             return false;
         }
         return true;
     }
 
-    completed()
-    {
-        
-    }
-
 
     isActive()
     {
-        return !(this.dependentOn.map((d) => d.completed()).includes(false))
+        return true;// !(this.dependentOn.map((d) => d.completed()).includes(false))
     }
 
 }

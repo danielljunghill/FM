@@ -1,39 +1,36 @@
 
-import { DependableItem } from './DependableItem.js'
 import { Attempts } from './Attempts.js'
 import { Attempt } from './Attempt.js'
 
-export class Task extends DependableItem
+export class Task
 {
     
-    constructor(taskId,taskGroupId,evalfunction)
+    constructor(taskId,taskGroupId,roundId)
     {        
         this.Attempts = []
         this.taskId = taskId;
         this.taskGroupId = taskGroupId;
-        this.evalFunction = evalfunction;     
+        this.roundId = roundId
     }
 
-    attempt(input, roundId)
+    attempt(input)
     {
-        let attempt = new Attempt(this.taskId,this.taskGroupId,roundId, this.evalFunction(input));
+        let attempt = new Attempt(this.taskId,this.taskGroupId, this.roundId ,true);
         this.Attempts.push(attempt);
         return attempt;
     }
 
-    completed(roundId)
+    completed()
     {
-        let roundAttempts = this.Attempts.filter(attempt => attempt.roundId == roundId);
-        if(roundAttempts.length == 0)
+        this.Attempts;
+        if(this.Attempts.length == 0)
         {
             return false;
         }
-        return roundAttempts[roundAttempts.length - 1].correct;
+        return this.Attempts[this.Attempts.length - 1].correct;
     }
 
-    completed()
-    {
-        
-    }
+    
+
 }
 

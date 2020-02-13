@@ -5,6 +5,9 @@ export function attemptStore()
     let store = new Map()
     let add = function(attempt)
     {
-        store.has(attempt.taskGroupId)
+        if(store.has(attempt.taskGroupId))
+        {
+            store.get(attempt.taskGroupId).push(attempt.taskGroupId,attempt);
+        }
     }
 }

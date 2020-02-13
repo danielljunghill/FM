@@ -1,106 +1,529 @@
 //Add dependendencies between multiply tables
-import { MultiplyTables} from './Scripts/MultiplyTables.js'
-import { GetDisplay} from './Scripts/MultiplyTables.js'
-import { randomInteger } from './Scripts/Math.js'
-import { MultiplyQuestion } from './Scripts/question.js'
-import { 
-    newQuestionState, 
-    selectQuestionsState } from './Scripts/state.js'
+import { MultiplyTable} from './Scripts/MultiplyTable.js'
+// import { GetDisplay} from './Scripts/MultiplyTables.js'
+// import { randomInteger } from './Scripts/Math.js'
+// import { MultiplyQuestion } from './Scripts/question.js'
+// import { 
+//     newQuestionState, 
+//     selectQuestionsState } from './Scripts/state.js'
 
 //skapa tabeller
-let tables = new MultiplyTables(10,false)
-let display = GetDisplay(tables);
-//handle för skapande av nästa fråga   
-let createQuestion = {}
-//handle för nästa fråga
-let nextQuestionInteval = {};
-//handler för konsumerad tid
-let timerInterval = {}
+let tables = new MultiplyTable(7)
+// let display = GetDisplay(tables);
+// //handle för skapande av nästa fråga   
+// let createQuestion = {}
+// //handle för nästa fråga
+// let nextQuestionInteval = {};
+// //handler för konsumerad tid
+// let timerInterval = {}
 
-function setTime(state)
-{
-    console.log(state.seconds)
-    state.seconds = state.seconds + 1;
-}
+// function setTime(state)
+// {
+//     console.log(state.seconds)
+//     state.seconds = state.seconds + 1;
+// }
 
-let stopped = false;
+// let stopped = false;
 
-function nextQuestion(app)
-{
-    clearInterval(nextQuestionInteval);
-    let next = createQuestion();
-    app.state = next.state;
-    if(!next.completed)
-    {
-      timerInterval = setInterval(() => setTime(app.state),1000);
-      app.question = next.question;
-    }
-}
-
-
-function startNextQuestion(app,interval)
-{
-    clearInterval(timerInterval);
-    nextQuestionInteval = setInterval(() => nextQuestion(app),interval);
-}
+// function nextQuestion(app)
+// {
+//     clearInterval(nextQuestionInteval);
+//     let next = createQuestion();
+//     app.state = next.state;
+//     if(!next.completed)
+//     {
+//       timerInterval = setInterval(() => setTime(app.state),1000);
+//       app.question = next.question;
+//     }
+// }
 
 
+// function startNextQuestion(app,interval)
+// {
+//     clearInterval(timerInterval);
+//     nextQuestionInteval = setInterval(() => nextQuestion(app),interval);
+// }
 
-function getQuestions(tableNr)
-{
 
-    let questions = tables.items[tableNr - 1].getQuestions();
+
+// function getQuestions(tableNr)
+// {
+
+//     let questions = tables.items[tableNr - 1].getQuestions();
   
-    function notAnsweredQuestion(question)
-    {
+//     function notAnsweredQuestion(question)
+//     {
        
-        return !question.isCorrect();
-    }
+//         return !question.isCorrect();
+//     }
+// let display = GetDisplay(tables);
+// //handle för skapande av nästa fråga   
+// let createQuestion = {}
+// //handle för nästa fråga
+// let nextQuestionInteval = {};
+// //handler för konsumerad tid
+// let timerInterval = {}
 
-    function notAsweredQuestions(questions)
-    {
-        console.log(questions.length + " questions")
-        return questions.filter(notAnsweredQuestion);
-    }
+// function setTime(state)
+// {
+//     console.log(state.seconds)
+//     state.seconds = state.seconds + 1;
+// }
 
-    return function()
-    {
-        console.log("all questions length " + questions.length)
-        let selection = notAsweredQuestions(questions);
-        console.log(selection.length + " not answered questions");
-        let index = randomInteger(1,selection.length);
-        let question = selection[index - 1];
-        let state = newQuestionState();
-        if(selection.length == 0)
-        {
-            console.log("no question found")
-            clearInterval(timerInterval)
-            state = selectQuestionsState();
-            //dummy question
-            question = new MultiplyQuestion(1,2,[]);
-        }
-        return  { question: question , state: state ,completed: (selection.length == 0)} ;
-    }
+// let stopped = false;
 
-}
-
-function nextQestion(app)
-{
-    if(stopped)
-    {
-        let next = createQuestion();
-        app.state = next.state;
-        app.question = next.question;
-    }
-    stopped = false;
-}
+// function nextQuestion(app)
+// {
+//     clearInterval(nextQuestionInteval);
+//     let next = createQuestion();
+//     app.state = next.state;
+//     if(!next.completed)
+//     {
+//       timerInterval = setInterval(() => setTime(app.state),1000);
+//       app.question = next.question;
+//     }
+// }
 
 
+// function startNextQuestion(app,interval)
+// {
+//     clearInterval(timerInterval);
+//     nextQuestionInteval = setInterval(() => nextQuestion(app),interval);
+// }
+
+
+
+// function getQuestions(tableNr)
+// {
+
+//     let questions = tables.items[tableNr - 1].getQuestions();
+  
+//     function notAnsweredQuestion(question)
+//     {
+       
+//         return !question.isCorrect();
+//     }
+// let display = GetDisplay(tables);
+// //handle för skapande av nästa fråga   
+// let createQuestion = {}
+// //handle för nästa fråga
+// let nextQuestionInteval = {};
+// //handler för konsumerad tid
+// let timerInterval = {}
+
+// function setTime(state)
+// {
+//     console.log(state.seconds)
+//     state.seconds = state.seconds + 1;
+// }
+
+// let stopped = false;
+
+// function nextQuestion(app)
+// {
+//     clearInterval(nextQuestionInteval);
+//     let next = createQuestion();
+//     app.state = next.state;
+//     if(!next.completed)
+//     {
+//       timerInterval = setInterval(() => setTime(app.state),1000);
+//       app.question = next.question;
+//     }
+// }
+
+
+// function startNextQuestion(app,interval)
+// {
+//     clearInterval(timerInterval);
+//     nextQuestionInteval = setInterval(() => nextQuestion(app),interval);
+// }
+
+
+
+// function getQuestions(tableNr)
+// {
+
+//     let questions = tables.items[tableNr - 1].getQuestions();
+  
+//     function notAnsweredQuestion(question)
+//     {
+       
+//         return !question.isCorrect();
+//     }
+// let display = GetDisplay(tables);
+// //handle för skapande av nästa fråga   
+// let createQuestion = {}
+// //handle för nästa fråga
+// let nextQuestionInteval = {};
+// //handler för konsumerad tid
+// let timerInterval = {}
+
+// function setTime(state)
+// {
+//     console.log(state.seconds)
+//     state.seconds = state.seconds + 1;
+// }
+
+// let stopped = false;
+
+// function nextQuestion(app)
+// {
+//     clearInterval(nextQuestionInteval);
+//     let next = createQuestion();
+//     app.state = next.state;
+//     if(!next.completed)
+//     {
+//       timerInterval = setInterval(() => setTime(app.state),1000);
+//       app.question = next.question;
+//     }
+// }
+
+
+// function startNextQuestion(app,interval)
+// {
+//     clearInterval(timerInterval);
+//     nextQuestionInteval = setInterval(() => nextQuestion(app),interval);
+// }
+
+
+
+// function getQuestions(tableNr)
+// {
+
+//     let questions = tables.items[tableNr - 1].getQuestions();
+  
+//     function notAnsweredQuestion(question)
+//     {
+       
+//         return !question.isCorrect();
+//     }
+// let display = GetDisplay(tables);
+// //handle för skapande av nästa fråga   
+// let createQuestion = {}
+// //handle för nästa fråga
+// let nextQuestionInteval = {};
+// //handler för konsumerad tid
+// let timerInterval = {}
+
+// function setTime(state)
+// {
+//     console.log(state.seconds)
+//     state.seconds = state.seconds + 1;
+// }
+
+// let stopped = false;
+
+// function nextQuestion(app)
+// {
+//     clearInterval(nextQuestionInteval);
+//     let next = createQuestion();
+//     app.state = next.state;
+//     if(!next.completed)
+//     {
+//       timerInterval = setInterval(() => setTime(app.state),1000);
+//       app.question = next.question;
+//     }
+// }
+
+
+// function startNextQuestion(app,interval)
+// {
+//     clearInterval(timerInterval);
+//     nextQuestionInteval = setInterval(() => nextQuestion(app),interval);
+// }
+
+
+
+// function getQuestions(tableNr)
+// {
+
+//     let questions = tables.items[tableNr - 1].getQuestions();
+  
+//     function notAnsweredQuestion(question)
+//     {
+       
+//         return !question.isCorrect();
+//     }
+// let display = GetDisplay(tables);
+// //handle för skapande av nästa fråga   
+// let createQuestion = {}
+// //handle för nästa fråga
+// let nextQuestionInteval = {};
+// //handler för konsumerad tid
+// let timerInterval = {}
+
+// function setTime(state)
+// {
+//     console.log(state.seconds)
+//     state.seconds = state.seconds + 1;
+// }
+
+// let stopped = false;
+
+// function nextQuestion(app)
+// {
+//     clearInterval(nextQuestionInteval);
+//     let next = createQuestion();
+//     app.state = next.state;
+//     if(!next.completed)
+//     {
+//       timerInterval = setInterval(() => setTime(app.state),1000);
+//       app.question = next.question;
+//     }
+// }
+
+
+// function startNextQuestion(app,interval)
+// {
+//     clearInterval(timerInterval);
+//     nextQuestionInteval = setInterval(() => nextQuestion(app),interval);
+// }
+
+
+
+// function getQuestions(tableNr)
+// {
+
+//     let questions = tables.items[tableNr - 1].getQuestions();
+  
+//     function notAnsweredQuestion(question)
+//     {
+       
+//         return !question.isCorrect();
+//     }
+// let display = GetDisplay(tables);
+// //handle för skapande av nästa fråga   
+// let createQuestion = {}
+// //handle för nästa fråga
+// let nextQuestionInteval = {};
+// //handler för konsumerad tid
+// let timerInterval = {}
+
+// function setTime(state)
+// {
+//     console.log(state.seconds)
+//     state.seconds = state.seconds + 1;
+// }
+
+// let stopped = false;
+
+// function nextQuestion(app)
+// {
+//     clearInterval(nextQuestionInteval);
+//     let next = createQuestion();
+//     app.state = next.state;
+//     if(!next.completed)
+//     {
+//       timerInterval = setInterval(() => setTime(app.state),1000);
+//       app.question = next.question;
+//     }
+// }
+
+
+// function startNextQuestion(app,interval)
+// {
+//     clearInterval(timerInterval);
+//     nextQuestionInteval = setInterval(() => nextQuestion(app),interval);
+// }
+
+
+
+// function getQuestions(tableNr)
+// {
+
+//     let questions = tables.items[tableNr - 1].getQuestions();
+  
+//     function notAnsweredQuestion(question)
+//     {
+       
+//         return !question.isCorrect();
+//     }
+// let display = GetDisplay(tables);
+// //handle för skapande av nästa fråga   
+// let createQuestion = {}
+// //handle för nästa fråga
+// let nextQuestionInteval = {};
+// //handler för konsumerad tid
+// let timerInterval = {}
+
+// function setTime(state)
+// {
+//     console.log(state.seconds)
+//     state.seconds = state.seconds + 1;
+// }
+
+// let stopped = false;
+
+// function nextQuestion(app)
+// {
+//     clearInterval(nextQuestionInteval);
+//     let next = createQuestion();
+//     app.state = next.state;
+//     if(!next.completed)
+//     {
+//       timerInterval = setInterval(() => setTime(app.state),1000);
+//       app.question = next.question;
+//     }
+// }
+
+
+// function startNextQuestion(app,interval)
+// {
+//     clearInterval(timerInterval);
+//     nextQuestionInteval = setInterval(() => nextQuestion(app),interval);
+// }
+
+
+
+// function getQuestions(tableNr)
+// {
+
+//     let questions = tables.items[tableNr - 1].getQuestions();
+  
+//     function notAnsweredQuestion(question)
+//     {
+       
+//         return !question.isCorrect();
+//     }
+// let display = GetDisplay(tables);
+// //handle för skapande av nästa fråga   
+// let createQuestion = {}
+// //handle för nästa fråga
+// let nextQuestionInteval = {};
+// //handler för konsumerad tid
+// let timerInterval = {}
+
+// function setTime(state)
+// {
+//     console.log(state.seconds)
+//     state.seconds = state.seconds + 1;
+// }
+
+// let stopped = false;
+
+// function nextQuestion(app)
+// {
+//     clearInterval(nextQuestionInteval);
+//     let next = createQuestion();
+//     app.state = next.state;
+//     if(!next.completed)
+//     {
+//       timerInterval = setInterval(() => setTime(app.state),1000);
+//       app.question = next.question;
+//     }
+// }
+
+
+// function startNextQuestion(app,interval)
+// {
+//     clearInterval(timerInterval);
+//     nextQuestionInteval = setInterval(() => nextQuestion(app),interval);
+// }
+
+
+
+// function getQuestions(tableNr)
+// {
+
+//     let questions = tables.items[tableNr - 1].getQuestions();
+  
+//     function notAnsweredQuestion(question)
+//     {
+       
+//         return !question.isCorrect();
+//     }
+// let display = GetDisplay(tables);
+// //handle för skapande av nästa fråga   
+// let createQuestion = {}
+// //handle för nästa fråga
+// let nextQuestionInteval = {};
+// //handler för konsumerad tid
+// let timerInterval = {}
+
+// function setTime(state)
+// {
+//     console.log(state.seconds)
+//     state.seconds = state.seconds + 1;
+// }
+
+// let stopped = false;
+
+// function nextQuestion(app)
+// {
+//     clearInterval(nextQuestionInteval);
+//     let next = createQuestion();
+//     app.state = next.state;
+//     if(!next.completed)
+//     {
+//       timerInterval = setInterval(() => setTime(app.state),1000);
+//       app.question = next.question;
+//     }
+// }
+
+
+// function startNextQuestion(app,interval)
+// {
+//     clearInterval(timerInterval);
+//     nextQuestionInteval = setInterval(() => nextQuestion(app),interval);
+// }
+
+
+
+// function getQuestions(tableNr)
+// {
+
+//     let questions = tables.items[tableNr - 1].getQuestions();
+  
+//     function notAnsweredQuestion(question)
+//     {
+       
+//         return !question.isCorrect();
+//     }
+
+//     function notAsweredQuestions(questions)
+//     {
+//         console.log(questions.length + " questions")
+//         return questions.filter(notAnsweredQuestion);
+//     }
+
+//     return function()
+//     {
+//         console.log("all questions length " + questions.length)
+//         let selection = notAsweredQuestions(questions);
+//         console.log(selection.length + " not answered questions");
+//         let index = randomInteger(1,selection.length);
+//         let question = selection[index - 1];
+//         let state = newQuestionState();
+//         if(selection.length == 0)
+//         {
+//             console.log("no question found")
+//             clearInterval(timerInterval)
+//             state = selectQuestionsState();
+//             //dummy question
+//             question = new MultiplyQuestion(1,2,[]);
+//         }
+//         return  { question: question , state: state ,completed: (selection.length == 0)} ;
+//     }
+
+// }
+
+// function nextQestion(app)
+// {
+//     if(stopped)
+//     {
+//         let next = createQuestion();
+//         app.state = next.state;
+//         app.question = next.question;
+//     }
+//     stopped = false;
+// }
+let table = new MultiplyTable(6);
+console.log(table.Tasks[1]);
 new Vue({
   el:'#vue-app',
   data:{
-      state : selectQuestionsState(),
-      selection: display,
+      state : table,
+      selection:{} ,//display,
       question: {},
     },
   methods: {

@@ -1,44 +1,34 @@
+import { MultiplyQuestion } from './MultiplyQuestion.js'
+import { TaskGroup } from './TaskGroup.js'
+import { createUUID } from './Math.js'
 
-import { MultiplyQuestion, multiplyQuestionsCreator } from './Question.js'
-import { newQuestionState } from './state.js';
-
-function GetMultiplyQuestions(from, to)
+function createMultiplyTableId(tableNr)
 {
-    //cache för questions
-    //flytta attempts en hack
+    return `MultiplyTable.${tableNr}`;
+}
+
+function createMultiplyQuestions(tableNr)
+{
     let questions = [];
-    let j = {};
+    let roundId = createUUID();
     let i = {};
-    for (i = from; i <= to; i++) {
-    for(j = 1; j <= 10; j++)
+    for(i = 1; i <= 10; i++)
     {   
-        let question = multiplyQuestionsCreator(i,j);
-        question.addNewAttempts();
+        let question = new MultiplyQuestion(tableNr,i,createMultiplyTableId(tableNr),roundId);
         questions.push(question);
     }
-    }
+    
     return questions;
 }
 
-
-
-export class MultiplyTable {
- 
+export class MultiplyTable extends TaskGroup
+{
     constructor(tableNr)
     {
-      this.tableNr = tableNr;
-      this.active = tableNr == 8;
-    }
-  
-
-    getQuestions()
-    {
-        return GetMultiplyQuestions(this.tableNr,this.tableNr);;
-    }
-
-    isCorrect()
-    {
+        super(createMultiplyTableId(tableNr), createMultiplyQuestions(tableNr)); 
 
     }
 
 }
+
+let test = new MultiplyTable(6);
