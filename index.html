@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>No title</title>
+    <link href="styles.css" rel="stylesheet"/>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+
+    <div id='vue-app' class="center-div">
+      <div v-bind:class="{hide:state.hideSelection}">
+        <Table style="width:400px">
+          <tr>
+          <template v-for="row in selection">
+            <tr>
+            <template v-for="table in row">
+              <td v-if="table.active" v-bind:class="{deactive:table.active}"><div class ="display-text">{{ table.tableNr }}</div></td>
+              <td v-else v-on:click="selectionChange(table.tableNr)"><div class ="display-text">{{ table.tableNr }}</div></td>
+            </template>
+          </tr>
+
+         </template>
+      </tr>
+        </Table>
+      </div>
+      <div v-bind:class="{hide:state.hideQuestion}" >
+        <div v-bind:class="{grayBorder:!state.correct,greenBorder:state.correct}">
+        <table id="question-table" style="width:400px">
+          <tr>
+          <td>
+              <table style="width:300px">
+                <tr>
+                  <td><div class="display-text" style="width: 50px;">{{question.A}}</div></td>
+                  <td>*</td>
+                  <td><div class="display-text" style="width: 50px;">{{question.B}}</div></td>
+                  <td><div class="display-text" style="width: 50px;"> =</div></td>
+                  <td><div class="display-text" style="width: 50px;">{{state.answer}}</div></td>
+                </tr>
+                <tr><td colspan="5">
+                  <input 
+                  v-bind:class="{hide:true}"
+                  id='answer-question-input' 
+                  type="text" 
+                  v-on:keyup.enter="verifyAnswer" 
+                  v-model="state.answer"></input></td></tr>
+                <tr><td colspan="5"><button v-on:click="verifyAnswer" id='answer-question-button'>Svar</button></td></tr>
+              </table>
+          </td>
+          <td>
+            
+            <div v-if="state.seconds != 0"  div class="display-time">{{state.seconds}}</div>
+        </td>
+        </tr>
+      </table>
+     </div>
+     <div></div>
+    </div>
+    <div v-bind:class="{hide:state.hideDisplayWrongAnswer}">
+      <div class="redBorder">
+   
+          <table id="question-table" style="width:400px">
+            <tr>
+              <td><div class="display-error-text">{{question.A}}</div></td>
+              <td>*</td>
+              <td><div class="display-error-text">{{question.B}}</div></td>
+              <td><div class="display-text">=</div></td>
+              <td><div class="display-error-text">{{state.answer}}</div></td>
+            </tr>
+            <tr>
+              <td><div class="display-text">{{question.A}}</div></td>
+              <td>*</td>
+              <td><div class="display-text">{{question.B}}</div></td>
+              <td><div class="display-text">=</div></td>
+              <td><div class="display-text">{{state.correctAnswer}}</div></td>
+            </tr>
+            <tr><td colspan="5"><button v-on:click="skipErrorPresentation" id='answer-question-button'>OK</button></td></tr>
+        </table>
+
+    </div>
+  </div>
+  <div v-bind:class="{hide:state.hideDisplayCorrectAnswer}">
+    <div class="greenBorder">
+      <table>
+        <table id="question-table" ></table>
+          <tr>
+            <td><div class="display-text">{{question.A}}</div></td>
+            <td>*</td>
+            <td><div class="display-text">{{question.B}}</div></td>
+            <td><div class="display-text">=</div></td>
+            <td><div class="display-text">{{state.answer}}</div></td>
+          </tr>
+      </table>
+      </table>
+  </div>
+</div>
+    <div v-bind:class="{hide:state.hideCompleted}">
+      <TABLE>
+      <TR>
+        <TD>
+             Färdig !!!
+        </TD>
+      </TR>
+    </TABLE>
+
+    </div>
+  </div>
+
+  </body>
+
+
+  <script type="module" src='app.js'></script>
+  
+</html>

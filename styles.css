@@ -1,0 +1,131 @@
+span{
+  background: white;
+  color:black;
+  padding:10px
+}
+
+.correct span {
+    background: white;
+    color:black;
+    padding:10px
+}
+
+.answer span {
+    background: white;
+    color:black;
+    padding:10px
+}
+
+.hide {
+    display:none;
+
+}
+
+.greenBorder {
+    border: 2px solid green;
+    display:inline-block;
+}
+
+.grayBorder {
+    border: 1px solid gray;
+    display:inline-block;
+}
+
+.redBorder {
+    border: 2px solid red;
+    display:inline-block;
+}
+
+table {
+    align-self: center;
+}
+
+td.deactive {
+    color: gray;
+}
+
+td {
+    border: 1px solid black; 
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 0px;
+}
+
+td:active
+{
+    border: 3px solid black; 
+}
+
+td:hover {
+    background-color:rgb(163, 169, 187);
+  }
+
+#answer-table td {
+    border-color: transparent;
+    width: 50px;
+
+}
+
+#answer-question-button {
+    
+        display:inline-block;
+        width:100%;
+        height: 40px;
+    
+}
+
+#answer-question-input {
+    
+    display:inline-block;
+    width:90%;
+    padding:10px;
+    height: 40px;
+    text-align: center;
+
+}
+
+#question-table  {
+    border-color: transparent;
+
+
+}
+
+#question-table td:hover {
+    background-color:transparent;
+
+}
+
+#question-table td {
+    border-color: transparent;
+    border: 1px transparent; 
+    width: 50px;
+    height: 50px;
+    text-align: center;
+
+}
+
+div.display-text {
+    font-size: 40px;
+}
+ 
+div.display-time {
+    font-size: 30px;
+    color: blue
+}
+div.display-error-text
+{
+    text-decoration: line-through;
+    font-size: 40px;
+    color: gray;
+}
+
+.center-div
+{
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -10%;
+    margin-left: -200px;
+}
