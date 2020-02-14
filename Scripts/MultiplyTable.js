@@ -4,7 +4,7 @@ import { createUUID } from './Math.js'
 
 function createMultiplyTableId(tableNr)
 {
-    return `MultiplyTable.${tableNr}`;
+    return `MultiplyTable.[${tableNr}]`;
 }
 
 function createMultiplyQuestions(tableNr)
@@ -12,6 +12,7 @@ function createMultiplyQuestions(tableNr)
     let questions = [];
     let roundId = createUUID();
     let i = {};
+    console.log( `tablenr ${tableNr}`)
     for(i = 1; i <= 10; i++)
     {   
         let question = new MultiplyQuestion(tableNr,i,createMultiplyTableId(tableNr),roundId);

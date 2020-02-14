@@ -1,15 +1,15 @@
 import { Task } from './Task.js'
 
-function id(a,b)
+function id(taskgroupId,a,b)
 {
-    return `MultiplyQuestion.${a}.${b}`;
+    return `${taskgroupId}.MultiplyQuestion.[${a}.${b}]`;
 }
 
 export class MultiplyQuestion extends Task
 {
     constructor(a,b,taskGroupId,roundId)
     {
-        super(id(a,b),taskGroupId,roundId)
+        super(id(taskGroupId,a,b),taskGroupId,roundId)
         this.A = a;
         this.B = b;
         this.Id = this.taskId;

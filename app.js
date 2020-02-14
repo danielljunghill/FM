@@ -1,6 +1,7 @@
 //Add dependendencies between multiply tables
 import { MultiplyTable} from './Scripts/MultiplyTable.js'
 import { multiplyTableLinks } from './Scripts/TaskGroupLinks.js';
+import { getMultiplyTableGroupLinksState, getMultiplyTableGroupState } from './Scripts/State.js';
 // import { GetDisplay} from './Scripts/MultiplyTables.js'
 // import { randomInteger } from './Scripts/Math.js'
 // import { MultiplyQuestion } from './Scripts/question.js'
@@ -11,6 +12,8 @@ import { multiplyTableLinks } from './Scripts/TaskGroupLinks.js';
 //skapa tabeller
 let tables = new MultiplyTable(7)
 let links = new multiplyTableLinks()
+let orginalState = new  getMultiplyTableGroupLinksState();
+
 // let display = GetDisplay(tables);
 // //handle för skapande av nästa fråga   
 // let createQuestion = {}
@@ -519,48 +522,60 @@ let links = new multiplyTableLinks()
 //     }
 //     stopped = false;
 // }
-let table = new MultiplyTable(6);
-console.log(table.Tasks[1]);
-console.log(links.Links[1]);
+
 new Vue({
   el:'#vue-app',
   data:{
-      state : table,
+      state : orginalState,
       selection:{} ,//display,
       question: {},
     },
   methods: {
     verifyAnswer:function(){
+
+      this.nextQuestion();
         //kontrollerar svar
-        this.state = this.question.evaluate(this.state.answer);
-        let interval = 3000;
-        if(this.state.correct)
-        { 
-            interval = 500; 
-        }
-        if(this.state.hideCompleted)
-        {
-            startNextQuestion(this,interval);
-        }
+        // this.state = this.question.evaluate(this.state.answer);
+        // let interval = 3000;
+        // if(this.state.correct)
+        // { 
+        //     interval = 500; 
+        // }
+        // if(this.state.hideCompleted)
+        // {
+        //     startNextQuestion(this,interval);
+        // }
         
     },
     skipErrorPresentation: function()
     {
-        nextQuestion(this);
+        // nextQuestion(this);
     },
     nextQuestion: function()
     {
-        let next = createQuestion();
-        this.state = next.state;
-        this.question = next.question;
+        let next = this.state.TaskGroup.getNextTask();
+        
+        if(next.Completed)
+        {
+           console.log("sdaflöasfdnksndönfkla");
+            this.state = orginalState;
+            return;
+        }
+        this.state.Task = next.Task;
+        // let next = createQuestion();
+        // this.state = next.state;
+        // this.question = next.question;
     },
     selectionChange: function(tableNr)
     {
-       createQuestion =  getQuestions(tableNr)
-       let next = createQuestion();
-       this.state = next.state;
-       timerInterval = setInterval(() => setTime( this.state),1000);
-       this.question = next.question;
+
+        console.log('asldnadk ' + tableNr);
+        this.state = getMultiplyTableGroupState(tableNr);
+    //    createQuestion =  getQuestions(tableNr)
+    //    let next = createQuestion();
+    //    this.state = next.state;
+    //    timerInterval = setInterval(() => setTime( this.state),1000);
+    //    this.question = next.question;
     }
   }
 });

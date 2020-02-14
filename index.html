@@ -9,7 +9,47 @@
   <body>
 
     <div id='vue-app' class="center-div">
-      
+      <div v-if="state.showTaskGroupLinks">
+        <table>
+          <tr>
+            <template v-for="link in state.items">
+            <td v-on:click="selectionChange(link.TableNr)">
+              {{link.TableNr}}
+            </td>
+          </template>
+          </tr>
+        </table>
+      </div>
+      <div v-if="state.showTask">
+        <!-- <div v-bind:class="{grayBorder:!state.correct,greenBorder:state.correct}"> -->
+          <table id="question-table" style="width:400px">
+            <tr>
+            <td>
+                <table style="width:300px">
+                  <tr>
+                    <td><div class="display-text" style="width: 50px;">{{state.Task.A}}</div></td>
+                    <td>*</td>
+                    <td><div class="display-text" style="width: 50px;">{{state.Task.B}}</div></td>
+                    <td><div class="display-text" style="width: 50px;"> =</div></td>
+                    <td><div class="display-text" style="width: 50px;">{{state.Answer}}</div></td> 
+                  </tr>
+                  <tr><td colspan="5">
+                    <input 
+                    v-bind:class="{hide:true}"
+                    id='answer-question-input' 
+                    type="text" 
+                    v-on:keyup.enter="verifyAnswer" 
+                    v-model="state.Answer"></input></td></tr>
+                  <tr><td colspan="5"><button v-on:click="verifyAnswer" id='answer-question-button'>Svar</button></td></tr>
+                </table>
+            </td>
+            <td>
+              
+              <div v-if="state.seconds != 0"  div class="display-time">{{state.seconds}}</div>
+          </td>
+          </tr>
+        </table>
+      </div>
       <!-- <div v-bind:class="{hide:state.hideSelection}">
         <Table style="width:400px">
           <tr>
