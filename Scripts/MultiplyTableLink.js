@@ -1,11 +1,11 @@
 import { MultiplyTable } from './MultiplyTable.js'
-import {TaskGroupLink  } from './TaskGroupLink.js'
+import { TaskGroupLink  } from './TaskGroupLink.js'
 
 export class MultiplyTableLink extends TaskGroupLink
 {
     constructor(tableNr)
     {
-        super(`MultiplyTable.${tableNr}`,true)
+        super(`MultiplyTableLink.${tableNr}`,true)
         this.TableNr = tableNr;
     }
 

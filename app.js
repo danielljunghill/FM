@@ -1,5 +1,6 @@
 //Add dependendencies between multiply tables
 import { MultiplyTable} from './Scripts/MultiplyTable.js'
+import { multiplyTableLinks } from './Scripts/TaskGroupLinks.js';
 // import { GetDisplay} from './Scripts/MultiplyTables.js'
 // import { randomInteger } from './Scripts/Math.js'
 // import { MultiplyQuestion } from './Scripts/question.js'
@@ -9,6 +10,7 @@ import { MultiplyTable} from './Scripts/MultiplyTable.js'
 
 //skapa tabeller
 let tables = new MultiplyTable(7)
+let links = new multiplyTableLinks()
 // let display = GetDisplay(tables);
 // //handle för skapande av nästa fråga   
 // let createQuestion = {}
@@ -519,6 +521,7 @@ let tables = new MultiplyTable(7)
 // }
 let table = new MultiplyTable(6);
 console.log(table.Tasks[1]);
+console.log(links.Links[1]);
 new Vue({
   el:'#vue-app',
   data:{

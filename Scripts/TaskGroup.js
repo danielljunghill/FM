@@ -5,7 +5,7 @@ export class TaskGroup
 {
     constructor(taskGroupId,tasks)
     {
-        console.log(taskGroupId); 
+    
         this.Tasks = tasks;
         this.TaskGroupId = taskGroupId;
         
