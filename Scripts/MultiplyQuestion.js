@@ -1,4 +1,5 @@
 import { Task } from './Task.js'
+import { Attempt } from './Attempt.js'
 
 function id(taskgroupId,a,b)
 {

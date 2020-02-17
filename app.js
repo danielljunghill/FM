@@ -1,7 +1,7 @@
 //Add dependendencies between multiply tables
-import { MultiplyTable} from './Scripts/MultiplyTable.js'
-import { multiplyTableLinks } from './Scripts/TaskGroupLinks.js';
+
 import { getMultiplyTableGroupLinksState, getMultiplyTableGroupState } from './Scripts/State.js';
+import { AttemptStore } from './Scripts/AttemptStore.js'
 // import { GetDisplay} from './Scripts/MultiplyTables.js'
 // import { randomInteger } from './Scripts/Math.js'
 // import { MultiplyQuestion } from './Scripts/question.js'
@@ -10,9 +10,8 @@ import { getMultiplyTableGroupLinksState, getMultiplyTableGroupState } from './S
 //     selectQuestionsState } from './Scripts/state.js'
 
 //skapa tabeller
-let tables = new MultiplyTable(7)
-let links = new multiplyTableLinks()
-let orginalState = new  getMultiplyTableGroupLinksState();
+let attemptStore = new AttemptStore();
+let orginalState = new  getMultiplyTableGroupLinksState(attemptStore);
 
 // let display = GetDisplay(tables);
 // //handle för skapande av nästa fråga   
@@ -533,6 +532,10 @@ new Vue({
   methods: {
     verifyAnswer:function(){
 
+      let attempt = this.state.Task.attempt(this.state.Answer)
+      attemptStore.add(attempt);
+      console.log(attempt);
+      this.state.Answer = "";
       this.nextQuestion();
         //kontrollerar svar
         // this.state = this.question.evaluate(this.state.answer);
@@ -554,10 +557,8 @@ new Vue({
     nextQuestion: function()
     {
         let next = this.state.TaskGroup.getNextTask();
-        
         if(next.Completed)
         {
-           console.log("sdaflöasfdnksndönfkla");
             this.state = orginalState;
             return;
         }

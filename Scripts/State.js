@@ -46,9 +46,9 @@ export class TaskGroupState extends State
 
 }
 
-export function getMultiplyTableGroupLinksState()
+export function getMultiplyTableGroupLinksState(store)
 {
-    return new TaskGroupLinksState(multiplyTableLinks());
+    return new TaskGroupLinksState(multiplyTableLinks(store));
 }
 
 export function getMultiplyTableGroupState(tableNr)

@@ -9,13 +9,14 @@ export class TaskGroupLinks
 }
 
 
-export function multiplyTableLinks()
+export function multiplyTableLinks(store)
 {
     let links = [];
     let i = {};
     for(i = 1; i <= 10; i++)
     {   
-        let link = new MultiplyTableLink(i);
+        let prev = i - 1;
+        let link = new MultiplyTableLink(i,`MultiplyTable.[${prev}]`,store);
         links.push(link);
     }  
     return new TaskGroupLinks(links);

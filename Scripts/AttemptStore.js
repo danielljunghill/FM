@@ -1,13 +1,38 @@
 import { Attempt } from "./Attempt.js"
+import { Attempts } from "./Attempts.js"
 
-export function attemptStore()
+
+//vid alla svar rätt skall nästa
+//link aktiveras
+export class AttemptStore
 {
-    let store = new Map()
-    let add = function(attempt)
+    constructor()
     {
-        if(store.has(attempt.taskGroupId))
-        {
-            store.get(attempt.taskGroupId).push(attempt.taskGroupId,attempt);
-        }
+        this.store = new Map();
     }
+
+    add(attempt)
+    {
+        console.log(attempt.taskGroupId)
+        if(!this.store.has(attempt.taskGroupId))
+        {
+            this.store.set(attempt.taskGroupId, new Attempts());
+        }
+        this.store.get(attempt.taskGroupId).add(attempt);
+    }
+
+    get(taskGroupId)
+    {
+        if(this.store.has(taskGroupId))
+        {
+            return this.store.get(taskGroupId);
+        }
+        return null;
+    }
+
+    has(taskGroupId)
+    {
+        return this.store.has(taskGroupId);
+    }
+
 }

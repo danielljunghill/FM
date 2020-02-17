@@ -14,12 +14,10 @@ export class NextTaskResult
 export class TaskGroup 
 {
     constructor(taskGroupId,tasks)
-    {
-    
+    {   
         this.Tasks = tasks;
         this.current = 0;
-        this.TaskGroupId = taskGroupId;
-        
+        this.TaskGroupId = taskGroupId;     
     }
     
     completed()

@@ -2,14 +2,32 @@ import { Attempt } from './Attempt.js'
 
 export class Attempts
 {
-    constructor()
+    constructor(isCompleted)
     {
-       this.items = [];
+       this.AttemptMap = new Map();
+       this.isCompleted = isCompleted;
     }
 
-    add(correct)
+    add(attempt)
     {
-        this.items.push(new Attempt(correct));
+        if(!this.AttemptMap.has(attempt.roundId))
+        {
+            this.AttemptMap.set(attempt.roundId,[]);
+        }
+        this.AttemptMap.get(attempt.roundId).push(attempt);
+        //
+        if(this.isCompleted)
+            return true;
+
+        if(this.AttemptMap.get(attempt.roundId).filter(a => a.correct).length == 10)
+        {
+            let result = this.AttemptMap.get(attempt.roundId).length == 10;
+            console.log(this.AttemptMap.get(attempt.roundId).length);
+            console.log("check completed " + result)
+            return (this.isCompleted  = this.AttemptMap.get(attempt.roundId).length == 10);
+        }
+    
+        return false;
     }
 
     current()
@@ -21,5 +39,6 @@ export class Attempts
     {
         return this.items.length == 0;
     }  
+
 
 }

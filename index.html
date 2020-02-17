@@ -13,9 +13,11 @@
         <table>
           <tr>
             <template v-for="link in state.items">
-            <td v-on:click="selectionChange(link.TableNr)">
+            <!-- <td v-on:click="selectionChange(link.TableNr)">
               {{link.TableNr}}
-            </td>
+            </td> -->
+            <td v-if="link.isActive()"v-on:click="selectionChange(link.TableNr)"><div class ="display-text">{{ link.TableNr }}</div></td>
+            <td v-else v-bind:class="{deactive:true}" ><div class ="display-text">{{ link.TableNr }}</div></td>
           </template>
           </tr>
         </table>

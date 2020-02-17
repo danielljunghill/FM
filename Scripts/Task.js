@@ -30,7 +30,6 @@ export class Task
         return this.Attempts[this.Attempts.length - 1].correct;
     }
 
-    
 
 }
 
