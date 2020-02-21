@@ -16,7 +16,7 @@ export function multiplyTableLinks(store)
     for(i = 1; i <= 10; i++)
     {   
         let prev = i - 1;
-        let link = new MultiplyTableLink(i,`MultiplyTable.[${prev}]`,store);
+        let link = new MultiplyTableLink(i,`MultiplyTable[${prev}]`,store);
         links.push(link);
     }  
     return new TaskGroupLinks(links);

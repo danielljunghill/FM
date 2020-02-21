@@ -4,7 +4,7 @@ import { createUUID } from './Math.js'
 
 function createMultiplyTableId(tableNr)
 {
-    return `MultiplyTable.[${tableNr}]`;
+    return `MultiplyTable[${tableNr}]`;
 }
 
 function createMultiplyQuestions(tableNr)

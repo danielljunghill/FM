@@ -2,6 +2,7 @@
 
 import { getMultiplyTableGroupLinksState, getMultiplyTableGroupState } from './Scripts/State.js';
 import { AttemptStore } from './Scripts/AttemptStore.js'
+import {  httpGet } from './Scripts/Http.js'
 // import { GetDisplay} from './Scripts/MultiplyTables.js'
 // import { randomInteger } from './Scripts/Math.js'
 // import { MultiplyQuestion } from './Scripts/question.js'
@@ -12,6 +13,17 @@ import { AttemptStore } from './Scripts/AttemptStore.js'
 //skapa tabeller
 let attemptStore = new AttemptStore();
 let orginalState = new  getMultiplyTableGroupLinksState(attemptStore);
+
+let json = httpGet();
+
+// function createObject(propName, propValue){
+//   this[propName] = propValue;
+// }
+// var myObj1 = new createObject('string1','string2');
+// console.log(myObj1);
+
+// let json = JSON.parse(jsonO.responseText);
+// console.log(`json:${json}`);
 
 // let display = GetDisplay(tables);
 // //handle för skapande av nästa fråga   
@@ -528,6 +540,7 @@ new Vue({
       state : orginalState,
       selection:{} ,//display,
       question: {},
+      json: json
     },
   methods: {
     verifyAnswer:function(){

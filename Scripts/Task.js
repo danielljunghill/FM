@@ -2,6 +2,7 @@
 import { Attempts } from './Attempts.js'
 import { Attempt } from './Attempt.js'
 
+
 export class Task
 {
     
@@ -10,6 +11,7 @@ export class Task
         this.Attempts = []
         this.taskId = taskId;
         this.taskGroupId = taskGroupId;
+        //this.id = `${taskGroupId}.[${taskId}]`
         this.roundId = roundId
     }
 

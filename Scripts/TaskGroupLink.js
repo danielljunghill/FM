@@ -13,7 +13,7 @@ export class TaskGroupLink
 
     CreateTaskGroup()
     {
-        return new TaskGroup("",[])
+        return new TaskGroup(this.taskGroupId,[])
     }
 
     isActive()
